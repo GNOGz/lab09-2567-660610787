@@ -28,7 +28,9 @@ export default function Home() {
       completed: false,
     };
     const newTasks: TaskItem[] = [...tasks, newTask];
-    setTasks(newTasks);
+    if(newTaskTitle != ""){
+      setTasks(newTasks);
+    }
   };
 
   const deleteTask = (taskId: string) => {
