@@ -15,7 +15,7 @@ export default function Task({
   toggleDoneTaskFunc,
   completed,
 }: TaskItemProps) {
-  // callback function when delete button is clicked
+  
   const deleteBtnOnClick = () => {
     deleteTaskFunc(id);
   };

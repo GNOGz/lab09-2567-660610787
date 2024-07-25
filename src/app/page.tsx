@@ -1,11 +1,12 @@
 'use client'
-import { nanoid } from "nanoid";
-import React, { useState } from "react";
-
 import Footer from "@components/Footer";
 import Header from "@components/Header";
 import Task from "@components/Task";
 import TaskInput from "@components/TaskInput";
+
+import { nanoid } from "nanoid";
+import React, { useState } from "react";
+
 
 
 
@@ -13,8 +14,8 @@ interface TaskItem {
   id: string;
   title: string;
   completed: boolean;
-  deleteTaskFunc?: (taskId: number) => void; // callback function
-  toggleDoneTaskFunc?: (taskId: number) => void; // callback function
+  deleteTaskFunc?: (taskId: number) => void; 
+  toggleDoneTaskFunc?: (taskId: number) => void; 
 }
 
 export default function Home() {
@@ -41,29 +42,26 @@ export default function Home() {
   const toggleDoneTask = (taskId: string) => {
 
     const newTasks = structuredClone(tasks);
-    const task: any  = newTasks.find((x) => x.id === taskId);
-    task.completed = !task.completed;
-    setTasks(task);
+    const task = newTasks.find((x) => x.id === taskId);
+    if (task != undefined){
+      task.completed = !task.completed;
+      setTasks(newTasks);
+    }
   };
 
-  const all_tasks = tasks;
-  const done_tasks:TaskItem[] = tasks.filter((task)=>{task.completed});
-  console.log(done_tasks);
-  console.log(all_tasks);
+
 
   return (
     <div className="container mx-auto">
       <Header />
       <div style={{ maxWidth: "400px" }} className="mx-auto">
         <p className="text-center text-secondary fst-italic">
-          All ({all_tasks.length}) Done ({done_tasks.length})
+          All ({tasks.length}) Done ({tasks.filter((t)=>t.completed).length})
         </p>
 
-        {/* task input */}
 
         <TaskInput addTaskFunc={addTask} />
 
-        {/* tasks mapping*/}
 
         {tasks.map((task) => (
           <Task
