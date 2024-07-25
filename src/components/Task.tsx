@@ -1,6 +1,5 @@
 import React from "react";
 
-// define TaskItem interface to use as props type
 interface TaskItemProps {
   id: string;
   title: string;
