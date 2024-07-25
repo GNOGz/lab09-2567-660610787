@@ -43,15 +43,20 @@ export default function Home() {
     const newTasks = structuredClone(tasks);
     const task: any  = newTasks.find((x) => x.id === taskId);
     task.completed = !task.completed;
-    setTasks(newTasks);
+    setTasks(task);
   };
+
+  const all_tasks = tasks;
+  const done_tasks:TaskItem[] = tasks.filter((task)=>{task.completed});
+  console.log(done_tasks);
+  console.log(all_tasks);
 
   return (
     <div className="container mx-auto">
       <Header />
       <div style={{ maxWidth: "400px" }} className="mx-auto">
         <p className="text-center text-secondary fst-italic">
-          All ({tasks.length}) Done ({tasks.filter((task)=>{task.completed}).length})
+          All ({all_tasks.length}) Done ({done_tasks.length})
         </p>
 
         {/* task input */}
